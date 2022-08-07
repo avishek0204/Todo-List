@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TodoList</title>
+    <title> <%= yield(:title) %> | Todos</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <% flash.each do |key,value|%>
+      <%= value %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

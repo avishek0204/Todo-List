@@ -14,3 +14,69 @@
 
  // Custom bootstrap variables must be set or imported *before* bootstrap. */
 @import "bootstrap";
+
+.todos_table{
+    width:50%;
+    margin:auto;
+    margin-top: 40px;
+}
+
+// new todo form 
+.form-container{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    .new_todo_form{
+        box-shadow: 0 2px 4px 2px rgba(0, 0, 0, .1);
+        border-radius: 8px;
+        padding: 30px;
+        background-color: #fff;
+        margin:0 16px;
+    }
+    .title_input{
+        input{
+            height: 40px;
+            padding: 0 20px;
+        }
+        .title_label{
+            margin-right:51px;
+        }
+    }   
+    .desc_input{
+        textarea{
+            resize: none;
+            height: 40px;
+            width:221px;
+        }
+    }   
+    .submit_btn{
+        input{
+            width: 139px;
+            height: 35px;
+            border-radius: 11px;
+            margin: 0 85px;
+        }
+        
+    }
+}
+
+// Show todo
+.todo-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    .todo-item{
+        box-shadow: 0 2px 4px 2px rgba(0, 0, 0, .1);
+        border-radius: 8px;
+        padding: 30px;
+        background-color: #fff;
+        margin:0 16px;
+        span{
+            margin-left: 10px;
+        }
+    }
+
+}

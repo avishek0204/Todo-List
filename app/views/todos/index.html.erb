@@ -1,0 +1,22 @@
+<% provide(:title, "Home")%>
+
+<table class="table todos_table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <% @todos.each do |todo|%>
+        <tr>
+            <th scope="row">*</th>
+            <td><%= todo.title %></td>
+            <td><%= todo.description %></td>
+        </tr>
+    <% end %>
+    
+  </tbody>
+</table>

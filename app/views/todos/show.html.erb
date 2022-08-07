@@ -1,0 +1,13 @@
+<% provide(:title, "#{@todo.title}")%>
+
+<div class="todo-container">
+    <div class="todo-item">
+
+        <div class="todo-title">
+            <b> Title: </b><span><%= @todo.title %></span>
+        </div>
+        <div class="todo-desc">
+            <b> Description: </b> <span><%= @todo.description %></span>
+        </div>
+    </div>
+</div>

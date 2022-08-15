@@ -1,11 +1,11 @@
-<% provide(:title, "Create new todo")%>
+<% provide(:title, "Update")%>
 
 
 
 <div class="form-container">
     <div class="new_todo_form">
-        <h1 class="todo_heading"> Add a todo </h1>
-        <%= form_with model: @todo, url: root_path, method: :post, local: true do |f| %>
+        <h1 class="todo_heading"> Update todo </h1>
+        <%= form_with model: @existing_todo, url: "todos/#{@existing_todo[:id]}", method: :post, local: true do |f| %>
             <p class="title_input">
                 <span class="title_label"> <%= f.label :title %> </span>
                 <span class="title_box"> <%= f.text_field :title %> </span>
@@ -17,7 +17,7 @@
             </p>
 
             <p>
-                <div class="submit_btn"> <%= f.submit "Create todo", class: "btn btn-primary"%> </div>
+                <div class="submit_btn"> <%= f.submit "Update todo", class: "btn btn-primary"%> </div>
             </p>
         <% end %>
     </div>

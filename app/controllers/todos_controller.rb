@@ -37,9 +37,16 @@ class TodosController < ApplicationController
 
     def update_todo
         Rails.logger.info "TodosController::update_todo"
+        Rails.logger.info "Parameters:: #{params}"
+        @existing_todo = Todo.find(params[:id])
+        if @existing_todo.update(title: params[:todo][:title], description: params[:todo][:description])
+            redirect_to "/todos/#{params[:id]}"
+        else  
+            redirect_to "/todos/#{params[:id]}/edit"
+        end
     end
 
-    def destroy
+    def destroyx
         Rails.logger.info "TodosController::destroy"
         @todo = Todo.find(params[:id]) 
         @todo.destroy

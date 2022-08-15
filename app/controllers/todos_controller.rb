@@ -46,7 +46,7 @@ class TodosController < ApplicationController
         end
     end
 
-    def destroyx
+    def destroy
         Rails.logger.info "TodosController::destroy"
         @todo = Todo.find(params[:id]) 
         @todo.destroy

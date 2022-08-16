@@ -1,7 +1,9 @@
 class TodosController < ApplicationController
     def index
         Rails.logger.info "TodosController::index"
-        @todos = Todo.all
+        # @todos = Todo.all
+        @todos_completed = Todo.where(completed: true)
+        @todos_pending = Todo.where(completed: false)
     end
 
     def show
@@ -20,10 +22,10 @@ class TodosController < ApplicationController
         Rails.logger.info "New todo: #{@new_todo.inspect}"
 
         if @new_todo.save
-            flash[:notice] = "Todo created succesfully"
+            flash[:notice] = "Todo created succesfully!!"
             redirect_to "/todos/#{@new_todo.id}"
         else 
-            flash[:alert] = "Something went wrong"
+            flash[:alert] = "Something went wrong!!"
             render "new"
         end
 
@@ -40,8 +42,10 @@ class TodosController < ApplicationController
         Rails.logger.info "Parameters:: #{params}"
         @existing_todo = Todo.find(params[:id])
         if @existing_todo.update(title: params[:todo][:title], description: params[:todo][:description])
+            flash[:notice] = "Todo updated sucessfully!!"
             redirect_to "/todos/#{params[:id]}"
         else  
+            flash[:alert] = "Something went wrong!!"
             redirect_to "/todos/#{params[:id]}/edit"
         end
     end
@@ -50,6 +54,16 @@ class TodosController < ApplicationController
         Rails.logger.info "TodosController::destroy"
         @todo = Todo.find(params[:id]) 
         @todo.destroy
+        flash[:deleted] = "Todo deleted sucessfully!!" 
+        redirect_to "/"
+    end
+
+    def mark_completed
+        Rails.logger.info "TodosController::mark_completed"
+        @todo = Todo.find(params[:id])
+        Rails.logger.info "Todo:: #{@todo.inspect}"
+        is_completed = @todo.completed
+        @todo.update(completed: !is_completed)
         redirect_to "/"
     end
 

@@ -11,10 +11,14 @@
 
   <body>
     <%= render "layouts/navbar"%>
+    <% flash.each do |key,value|%>
+      <p class='flash_message'> <%= value %> </p>
+    <% end %>
     <%= yield %>
     <br><br>
-    
-    <%= debug(params) if Rails.env.development? %>
+    <% if false %>
+      <%= debug(params) if Rails.env.development? %>
+    <% end %>
     
   </body>
 </html>

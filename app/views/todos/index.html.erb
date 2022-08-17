@@ -8,7 +8,7 @@
         <th scope="col">Serial</th>
         <th scope="col">Title</th>
         <th scope="col">Description</th>
-        <th scope="col" class="action"> Action </th>
+        <th scope="col" class="pending-action"> Action </th>
       </tr>
     </thead>
     <tbody>
@@ -22,11 +22,8 @@
                   <%= link_to "Delete", "/todos/#{todo[:id]}", method: :delete, class: "delete-btn" %> |
                   <%= link_to "Update", "/todos/#{todo[:id]}/edit", class: "update-btn" %> |
                   <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %> |
-                  <% if !todo.completed %>
-                    <%= link_to "Not Completed", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
-                  <% else %>
-                    <%= link_to "Mark it as completed", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
-                  <% end%>
+                  <%= link_to "Mark Completed", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
+                  
               </td>
               
           </tr>
@@ -44,7 +41,7 @@
         <th scope="col">Serial</th>
         <th scope="col">Title</th>
         <th scope="col">Description</th>
-        <th scope="col" class="action"> Action </th>
+        <th scope="col" class="completed-action"> Action </th>
       </tr>
     </thead>
     <tbody>
@@ -56,12 +53,7 @@
               <td class="todo_desc"><%= todo.description %></td>
               <td class="action-item">
                   <%= link_to "Delete", "/todos/#{todo[:id]}", method: :delete, class: "delete-btn" %> |
-                  <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %> |
-                  <% if !todo.completed %>
-                    <%= link_to "Not Completed", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
-                  <% else %>
-                    <%= link_to "Completed", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
-                  <% end%>
+                  <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %> 
               </td>
               
           </tr>

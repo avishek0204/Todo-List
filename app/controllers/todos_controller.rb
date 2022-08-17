@@ -1,14 +1,16 @@
 class TodosController < ApplicationController
     def index
         Rails.logger.info "TodosController::index"
-        # @todos = Todo.all
-        @todos_completed = Todo.where(completed: true)
-        @todos_pending = Todo.where(completed: false)
+        @todos_completed = Todo.where(completed: true, is_deleted: false)
+        @todos_pending = Todo.where(completed: false, is_deleted: false)
     end
 
     def show
         Rails.logger.info "TodosController::show"
-        @todo = Todo.find(params[:id])
+        @todo = Todo.find_by(id: params[:id])
+        if @todo.nil? || @todo[:is_deleted]
+            redirect_to '/404'
+        end
     end
 
     def new
@@ -33,7 +35,10 @@ class TodosController < ApplicationController
 
     def edit_todo
         Rails.logger.info "TodosController::edit_todo"
-        @existing_todo = Todo.find(params[:id])
+        @existing_todo = Todo.find_by(id: params[:id])
+        if @existing_todo.nil? || @existing_todo[:is_deleted]
+            redirect_to '/404'
+        end
         Rails.logger.info "#{@existing_todo.inspect}"
     end
 
@@ -53,7 +58,7 @@ class TodosController < ApplicationController
     def destroy
         Rails.logger.info "TodosController::destroy"
         @todo = Todo.find(params[:id]) 
-        @todo.destroy
+        @todo.update(is_deleted: true)
         flash[:deleted] = "Todo deleted sucessfully!!" 
         redirect_to "/"
     end
@@ -65,6 +70,10 @@ class TodosController < ApplicationController
         is_completed = @todo.completed
         @todo.update(completed: !is_completed)
         redirect_to "/"
+    end
+
+    def invalid_url
+        redirect_to '/404'
     end
 
 end

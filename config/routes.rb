@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   delete '/todos/:id', action: :destroy, controller: 'todos'
   patch '/todos/:id/mark', action: :mark_completed, controller: 'todos'
 
+  get ':not_found' => redirect('/404')
+
 end

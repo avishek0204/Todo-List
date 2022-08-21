@@ -9,7 +9,7 @@ class TodosController < ApplicationController
         Rails.logger.info "TodosController::show"
         @todo = Todo.find_by(id: params[:id])
         if @todo.nil? || @todo[:is_deleted]
-            redirect_to '/404'
+            render '/404'
         end
     end
 
@@ -37,7 +37,7 @@ class TodosController < ApplicationController
         Rails.logger.info "TodosController::edit_todo"
         @existing_todo = Todo.find_by(id: params[:id])
         if @existing_todo.nil? || @existing_todo[:is_deleted]
-            redirect_to '/404'
+            render '/404'
         end
         Rails.logger.info "#{@existing_todo.inspect}"
     end
@@ -56,6 +56,7 @@ class TodosController < ApplicationController
     end
 
     def destroy
+        Rails.logger.info "Params: #{params}"
         Rails.logger.info "TodosController::destroy"
         @todo = Todo.find(params[:id]) 
         @todo.update(is_deleted: true)
@@ -73,7 +74,7 @@ class TodosController < ApplicationController
     end
 
     def invalid_url
-        redirect_to '/404'
+        render '/404'
     end
 
 end

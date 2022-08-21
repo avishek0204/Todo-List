@@ -19,7 +19,7 @@
               <td><%= todo.title %></td>
               <td class="todo_desc"><%= todo.description %></td>
               <td class="action-item">
-                  <%= link_to "Delete", "/todos/#{todo[:id]}", method: :delete, class: "delete-btn" %> |
+                  <%= link_to "Delete", "/todos/#{todo[:id]}", method: :delete, class: "delete-btn"%> |
                   <%= link_to "Update", "/todos/#{todo[:id]}/edit", class: "update-btn" %> |
                   <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %> |
                   <%= link_to "Mark Completed", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
@@ -53,7 +53,8 @@
               <td class="todo_desc"><%= todo.description %></td>
               <td class="action-item">
                   <%= link_to "Delete", "/todos/#{todo[:id]}", method: :delete, class: "delete-btn" %> |
-                  <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %> 
+                  <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %>  |
+                  <%= link_to "Mark Incompleted", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
               </td>
               
           </tr>

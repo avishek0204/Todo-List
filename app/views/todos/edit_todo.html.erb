@@ -1,7 +1,14 @@
 <% provide(:title, "Update")%>
+<%
+    Rails.logger.info "Inside edit_todo.html.erb"
+    errors = @existing_todo.errors.full_messages
+%>
 
-
-
+<ul class="error_messages">
+    <% errors.each do |error| %>
+        <li><%= error %></li>
+    <% end %>
+<ul>
 <div class="form-container">
     <div class="new_todo_form">
         <h1 class="todo_heading"> Update todo </h1>

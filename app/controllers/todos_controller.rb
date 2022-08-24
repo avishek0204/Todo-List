@@ -8,6 +8,7 @@ class TodosController < ApplicationController
     def show
         Rails.logger.info "TodosController::show"
         @todo = Todo.find_by(id: params[:id])
+        Rails.logger.info "todo: #{@todo.inspect}"
         if @todo.nil? || @todo[:is_deleted]
             render '/404'
         end
@@ -15,20 +16,22 @@ class TodosController < ApplicationController
 
     def new
         Rails.logger.info "TodosController:new"
-        @todo = Todo.new
+        @new_todo = Todo.new
     end
 
     def create_todo
         Rails.logger.info "TodosController::create_todo"
         @new_todo = Todo.new(title: params[:todo][:title], description: params[:todo][:description])
+        @new_todo.user = User.first
         Rails.logger.info "New todo: #{@new_todo.inspect}"
-
         if @new_todo.save
+            Rails.logger.info "New todo: if"
             flash[:notice] = "Todo created succesfully!!"
             redirect_to "/todos/#{@new_todo.id}"
         else 
-            flash[:alert] = "Something went wrong!!"
-            render "new"
+            Rails.logger.info "New todo: else"
+            Rails.logger.info "New todo: #{@new_todo.inspect}"
+            render :new
         end
 
     end
@@ -36,6 +39,7 @@ class TodosController < ApplicationController
     def edit_todo
         Rails.logger.info "TodosController::edit_todo"
         @existing_todo = Todo.find_by(id: params[:id])
+        Rails.logger.info "Existing todo:: #{@existing_todo.inspect}"
         if @existing_todo.nil? || @existing_todo[:is_deleted]
             render '/404'
         end
@@ -46,12 +50,12 @@ class TodosController < ApplicationController
         Rails.logger.info "TodosController::update_todo"
         Rails.logger.info "Parameters:: #{params}"
         @existing_todo = Todo.find(params[:id])
+        @existing_todo.user = User.first
         if @existing_todo.update(title: params[:todo][:title], description: params[:todo][:description])
             flash[:notice] = "Todo updated sucessfully!!"
             redirect_to "/todos/#{params[:id]}"
         else  
-            flash[:alert] = "Something went wrong!!"
-            redirect_to "/todos/#{params[:id]}/edit"
+            render :edit_todo
         end
     end
 

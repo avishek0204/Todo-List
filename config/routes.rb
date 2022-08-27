@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   get '/users', action: :all_users, controller: 'users'
 
 
+  get '/login', action: :new, controller: 'sessions'
+  post '/login', action: :create, controller: 'sessions'
+  delete '/logout', action: :destroy, controller: 'sessions'
+
 
   
   get ':not_found', action: :invalid_url, controller: 'todos'

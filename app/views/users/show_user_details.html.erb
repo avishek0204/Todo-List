@@ -4,9 +4,7 @@
     <p class="text-center"><b> Username: </b><%= @user[:username] %> </p>
     <p class="text-center"><b> Email: </b><%= @user[:email] %> </p>
     <div class="text-center"> 
-        <button type="button" class="btn btn-primary">
-            <%= link_to "Edit your profile", "/users/#{@user[:id]}/edit", class: "update-btn"%>
-        </button> 
+        <%= link_to "Edit your profile", "/users/#{@user[:id]}/edit", class: "btn btn-outline-info",type: "button"%>   
     </div>
 
 </div>

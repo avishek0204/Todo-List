@@ -33,7 +33,7 @@ class UsersController < ApplicationController
             redirect_to "/users/#{@new_user[:id]}"
         else
             Rails.logger.info "Inside else #{@new_user.inspect}"
-            flash[:alert] = "Please enter valid details"
+            flash.now[:alert] = "Please enter valid details"
             render 'new'
         end
     end
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
             flash[:notice] = "Details updated!!"
             redirect_to "/users/#{@existing_user[:id]}"
         else  
-            flash[:alert] = "Something went wrong!!"
+            flash.now[:alert] = "Something went wrong!!"
             render :edit_user
         end
     end

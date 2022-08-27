@@ -64,7 +64,7 @@ class TodosController < ApplicationController
         Rails.logger.info "Todo:: #{@todo.inspect}"
         is_completed = @todo.completed
         @todo.update(completed: !is_completed)
-        redirect_to "/"
+        redirect_to "/users/#{session[:user_id]}"
     end
 
     def invalid_url

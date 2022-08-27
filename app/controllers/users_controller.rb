@@ -5,9 +5,10 @@ class UsersController < ApplicationController
         Rails.logger.info "User:: #{@user.inspect}"
         @current_user_todo_pending = Todo.where(user_id: @user[:id], completed: false, is_deleted: false)
         @current_user_todo_completed = Todo.where(user_id: @user[:id], completed: true, is_deleted: false)
+    end
 
-        
-        
+    def all_users
+        @all_users = User.all
     end
 
     def new 

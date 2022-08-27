@@ -17,8 +17,12 @@ Rails.application.routes.draw do
   post '/signup', action: :create_user, controller: 'users'
   get '/users/:id/edit', action: :edit_user, controller: 'users'
   patch '/users/:id/edit', action: :update_user_details, controller: 'users'
-  get 'users/:id', action: :show_user_details, controller: 'users'
+  get '/users/:id', action: :show_user_details, controller: 'users'
+  get '/users', action: :all_users, controller: 'users'
 
+
+
+  
   get ':not_found', action: :invalid_url, controller: 'todos'
 
 end

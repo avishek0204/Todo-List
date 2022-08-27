@@ -1,7 +1,8 @@
 <% provide(:title, "Home")%>
 <% if @todos_pending.first != nil %>
   <table class="table todos_table">
-    <h1 class="table-heading"> Pending </h1>
+  
+    <h1 class="table-heading"> Pending: <%= @todos_pending.length %> </h1>
     <thead>
       <tr>
         <th scope="col">Serial</th>
@@ -40,7 +41,7 @@
 
 <% if @todos_completed.first != nil %>
   <table class="table todos_table">
-    <h1 class="table-heading"> Completed </h1>
+    <h1 class="table-heading"> Completed: <%= @todos_completed.length %> </h1>
     <thead>
       <tr>
         <th scope="col">Serial</th>

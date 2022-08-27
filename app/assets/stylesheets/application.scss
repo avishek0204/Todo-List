@@ -1,7 +1,16 @@
 
 @import "bootstrap";
+//Comman css
+.delete-btn, .update-btn, .show-btn{
+    text-decoration: none;
+    color: #595252;
+    font-weight: 700;
+}
+.delete-btn, .update-btn, .show-btn:hover{
+    cursor: pointer;
+}
 
-
+// table css
 .table-heading{
     margin-top:30px;
     text-align: center;
@@ -21,14 +30,6 @@
     }
     .action-item{
         padding-left:20px;
-        .delete-btn, .update-btn, .show-btn{
-            text-decoration: none;
-            color: #595252;
-            font-weight: 700;
-        }
-    }
-    .delete-btn, .update-btn, .show-btn:hover{
-        cursor: pointer;
     }
     .mark-completed{
         padding-left: 16px;
@@ -224,4 +225,13 @@
     border-top-color: #DADADA;
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+  }
+
+  // users listing
+  .users_table{
+      .show-btn{
+        text-decoration: none;
+        color: #595252;
+        font-weight: 700;
+      }
   }

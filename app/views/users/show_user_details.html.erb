@@ -1,21 +1,26 @@
 <% provide(:title, "#{@user[:username]} profile")%>
 <div class="user-details">
-    <h1> User details </h1>
-    <p><b> Username: </b><%= @user[:username] %> </p>
-    <p><b> Email: </b><%= @user[:email] %> </p>
+    <h1 class="text-center mt-4"> Your details </h1>
+    <p class="text-center"><b> Username: </b><%= @user[:username] %> </p>
+    <p class="text-center"><b> Email: </b><%= @user[:email] %> </p>
+    <div class="text-center"> 
+        <button type="button" class="btn btn-primary">
+            <%= link_to "Edit your profile", "/users/#{@user[:id]}/edit", class: "update-btn"%>
+        </button> 
+    </div>
+
 </div>
 
 
 <% if @current_user_todo_pending.first != nil %>
   <table class="table todos_table">
-    <h1 class="table-heading"> Pending </h1>
+    <h1 class="table-heading"> Pending: <%= @current_user_todo_pending.length %></h1>
     <thead>
       <tr>
         <th scope="col">Serial</th>
         <th scope="col">Title</th>
         <th scope="col">Description</th>
         <th scope="col" class="pending-action"> Action </th>
-        <th scope="col"> Author </th>
       </tr>
     </thead>
     <tbody>
@@ -32,7 +37,6 @@
                   <%= link_to "Mark Completed", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
                   
               </td>
-              <td><%= @user[:username] %> </td>
 
               
           </tr>
@@ -42,21 +46,20 @@
   </table>
 <% end %>
 
-<% if @current_user_todo_pending.first != nil %>
+<% if @current_user_todo_completed.first != nil %>
   <table class="table todos_table">
-    <h1 class="table-heading"> Completed </h1>
+    <h1 class="table-heading"> Completed: <%= @current_user_todo_completed.length %> </h1>
     <thead>
       <tr>
         <th scope="col">Serial</th>
         <th scope="col">Title</th>
         <th scope="col">Description</th>
         <th scope="col" class="completed-action"> Action </th>
-        <th scope="col"> Author </th>
       </tr>
     </thead>
     <tbody>
       
-      <% @current_user_todo_pending.each do |todo|%>
+      <% @current_user_todo_completed.each do |todo|%>
           <tr>
               <th scope="row"><%= todo.id %></th>
               <td><%= todo.title %></td>
@@ -66,7 +69,6 @@
                   <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %>  |
                   <%= link_to "Mark Incompleted", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
               </td>
-              <td><%= @user[:username] %> </td> 
               
           </tr>
       <% end %>

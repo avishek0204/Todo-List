@@ -70,6 +70,7 @@ class TodosController < ApplicationController
 
     def mark_completed
         Rails.logger.info "TodosController::mark_completed"
+        Rails.logger.info "Params: #{params}"
         @todo = Todo.find(params[:id])
         Rails.logger.info "Todo:: #{@todo.inspect}"
         is_completed = @todo.completed

@@ -44,7 +44,7 @@ class UsersController < ApplicationController
         @existing_user = User.find_by(id: params[:id])
         if @existing_user.update(username: params[:user][:username], email: params[:user][:email], password: params[:user][:password])
             flash[:notice] = "Details updated!!"
-            redirect_to "/todos"
+            redirect_to "/users/#{@existing_user[:id]}"
         else  
             flash[:alert] = "Something went wrong!!"
             render :edit_user

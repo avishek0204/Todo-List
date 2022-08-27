@@ -15,20 +15,18 @@ class TodosController < ApplicationController
 
     def new
         Rails.logger.info "TodosController:new"
-        @todo = Todo.new
+        @new_todo = Todo.new
     end
 
     def create_todo
         Rails.logger.info "TodosController::create_todo"
         @new_todo = Todo.new(title: params[:todo][:title], description: params[:todo][:description])
-        Rails.logger.info "New todo: #{@new_todo.inspect}"
-
+        @new_todo.user = User.find_by(id: session[:user_id])
         if @new_todo.save
             flash[:notice] = "Todo created succesfully!!"
             redirect_to "/todos/#{@new_todo.id}"
         else 
-            flash[:alert] = "Something went wrong!!"
-            render "new"
+            render :new
         end
 
     end
@@ -39,24 +37,20 @@ class TodosController < ApplicationController
         if @existing_todo.nil? || @existing_todo[:is_deleted]
             render '/404'
         end
-        Rails.logger.info "#{@existing_todo.inspect}"
     end
 
     def update_todo
         Rails.logger.info "TodosController::update_todo"
-        Rails.logger.info "Parameters:: #{params}"
         @existing_todo = Todo.find(params[:id])
         if @existing_todo.update(title: params[:todo][:title], description: params[:todo][:description])
             flash[:notice] = "Todo updated sucessfully!!"
             redirect_to "/todos/#{params[:id]}"
         else  
-            flash[:alert] = "Something went wrong!!"
-            redirect_to "/todos/#{params[:id]}/edit"
+            render :edit_todo
         end
     end
 
     def destroy
-        Rails.logger.info "Params: #{params}"
         Rails.logger.info "TodosController::destroy"
         @todo = Todo.find(params[:id]) 
         @todo.update(is_deleted: true)
@@ -70,7 +64,7 @@ class TodosController < ApplicationController
         Rails.logger.info "Todo:: #{@todo.inspect}"
         is_completed = @todo.completed
         @todo.update(completed: !is_completed)
-        redirect_to "/"
+        redirect_to "/users/#{session[:user_id]}"
     end
 
     def invalid_url

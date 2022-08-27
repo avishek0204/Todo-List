@@ -1,5 +1,7 @@
 <% provide(:title, "#{@todo.id}")%>
-
+<%
+    author = User.find_by(id: @todo[:user_id])
+%>
 <div class="todo-container">
     <div class="todo-item">
 
@@ -8,6 +10,9 @@
         </div>
         <div class="todo-desc">
             <p> <%= @todo.description %> </p>
+        </div>
+        <div class="todo_creator">
+            <p><b>Created by: </b> <%= author.username %> </p>
         </div>
     </div>
 </div>

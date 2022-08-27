@@ -1,0 +1,27 @@
+<% provide(:title, "Edit your details")%>
+
+<div class="form-container">
+    <div class="new_todo_form">
+        <h1 class="todo_heading"> Edit your details </h1>
+        <%= form_with model: @existing_user, url: "/users/#{@existing_user[:id]}/edit", method: :patch, local: true do |f| %>
+            <p class="title_input">
+                <span class="title_label"> <%= f.label :username %> </span>
+                <span class="title_box"> <%= f.text_field :username %> </span>
+            </p>
+
+            <p class="title_input">
+                <span class="title_label"> <%= f.label :email %> </span>
+                <span class="title_box"> <%= f.text_field :email %> </span>
+            </p>
+            <p class="title_input">
+                <span class="title_label"> <%= f.label :password %> </span>
+                <span class="title_box"> <%= f.password_field :password %> </span>
+                <span> <input type="checkbox" onclick="togglePassword()">Show Password </span>
+            </p>
+
+            <p>
+                <div class="submit_btn"> <%= f.submit "Edit", class: "btn btn-primary"%> </div>
+            </p>
+        <% end %>
+    </div>
+</div>

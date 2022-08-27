@@ -10,6 +10,7 @@
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">No of todos </th>
+        <th scope="col"> Action </th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +24,7 @@
               <td scope="row"><%= link_to "#{user[:username]}", "/users/#{user[:id]}" , class: "nav_link show-btn"%> </td>
               <td class="row"><%= user[:email] %></td>
               <td scope="row"><%= no_of_todos %></td>
+              <td scope="row"> <%= link_to "Delete", "/users/#{user[:id]}", method: :delete, class: "delete-btn"%> </td>
               
           </tr>
       <% end %>

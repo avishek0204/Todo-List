@@ -3,9 +3,11 @@
     <h1 class="text-center mt-4"> Your details </h1>
     <p class="text-center"><b> Username: </b><%= @user[:username] %> </p>
     <p class="text-center"><b> Email: </b><%= @user[:email] %> </p>
-    <div class="text-center"> 
-        <%= link_to "Edit your profile", "/users/#{@user[:id]}/edit", class: "btn btn-outline-info",type: "button"%>   
-    </div>
+    <% if @logged_in_user_id == @user[:id] %>
+        <div class="text-center"> 
+            <%= link_to "Edit your profile", "/users/#{@user[:id]}/edit", class: "btn btn-outline-info",type: "button"%>   
+        </div>
+    <% end %>
 
 </div>
 
@@ -29,10 +31,11 @@
               <td><%= todo.title %></td>
               <td class="todo_desc"><%= todo.description %></td>
               <td class="action-item">
-                  <%= link_to "Delete", "/todos/#{todo[:id]}", method: :delete, class: "delete-btn"%> |
-                  <%= link_to "Update", "/todos/#{todo[:id]}/edit", class: "update-btn" %> |
-                  <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %> |
+                <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %> 
+                <% if @logged_in_user_id == @user[:id] %>
+                | <%= link_to "Delete", "/todos/#{todo[:id]}", method: :delete, class: "delete-btn" %> |
                   <%= link_to "Mark Completed", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
+                <% end %>
                   
               </td>
 
@@ -63,9 +66,11 @@
               <td><%= todo.title %></td>
               <td class="todo_desc"><%= todo.description %></td>
               <td class="action-item">
-                  <%= link_to "Delete", "/todos/#{todo[:id]}", method: :delete, class: "delete-btn" %> |
-                  <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %>  |
-                  <%= link_to "Mark Incompleted", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
+                  <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %>
+                  <% if @logged_in_user_id == @user[:id] %>
+                    | <%= link_to "Delete", "/todos/#{todo[:id]}", method: :delete, class: "delete-btn" %> |
+                      <%= link_to "Mark Incompleted", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
+                  <% end %>
               </td>
               
           </tr>

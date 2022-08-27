@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   patch '/users/:id/edit', action: :update_user_details, controller: 'users'
   get '/users/:id', action: :show_user_details, controller: 'users'
   get '/users', action: :all_users, controller: 'users'
+  delete '/users/:id', action: :destroy, controller: 'users'
 
 
   get '/login', action: :new, controller: 'sessions'
@@ -29,5 +30,7 @@ Rails.application.routes.draw do
 
   
   get ':not_found', action: :invalid_url, controller: 'todos'
+
+  resources :userfk
 
 end

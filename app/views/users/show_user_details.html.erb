@@ -1,0 +1,76 @@
+<% provide(:title, "#{@user[:username]} profile")%>
+<div class="user-details">
+    <h1> User details </h1>
+    <p><b> Username: </b><%= @user[:username] %> </p>
+    <p><b> Email: </b><%= @user[:email] %> </p>
+</div>
+
+
+<% if @current_user_todo_pending.first != nil %>
+  <table class="table todos_table">
+    <h1 class="table-heading"> Pending </h1>
+    <thead>
+      <tr>
+        <th scope="col">Serial</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col" class="pending-action"> Action </th>
+        <th scope="col"> Author </th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <% @current_user_todo_pending.each do |todo|%>
+          <tr>
+              <th scope="row"><%= todo.id %></th>
+              <td><%= todo.title %></td>
+              <td class="todo_desc"><%= todo.description %></td>
+              <td class="action-item">
+                  <%= link_to "Delete", "/todos/#{todo[:id]}", method: :delete, class: "delete-btn"%> |
+                  <%= link_to "Update", "/todos/#{todo[:id]}/edit", class: "update-btn" %> |
+                  <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %> |
+                  <%= link_to "Mark Completed", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
+                  
+              </td>
+              <td><%= @user[:username] %> </td>
+
+              
+          </tr>
+      <% end %>
+      
+    </tbody>
+  </table>
+<% end %>
+
+<% if @current_user_todo_pending.first != nil %>
+  <table class="table todos_table">
+    <h1 class="table-heading"> Completed </h1>
+    <thead>
+      <tr>
+        <th scope="col">Serial</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col" class="completed-action"> Action </th>
+        <th scope="col"> Author </th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <% @current_user_todo_pending.each do |todo|%>
+          <tr>
+              <th scope="row"><%= todo.id %></th>
+              <td><%= todo.title %></td>
+              <td class="todo_desc"><%= todo.description %></td>
+              <td class="action-item">
+                  <%= link_to "Delete", "/todos/#{todo[:id]}", method: :delete, class: "delete-btn" %> |
+                  <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %>  |
+                  <%= link_to "Mark Incompleted", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
+              </td>
+              <td><%= @user[:username] %> </td> 
+              
+          </tr>
+      <% end %>
+      
+    </tbody>
+  </table>
+<% end %>

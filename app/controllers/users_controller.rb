@@ -1,4 +1,15 @@
 class UsersController < ApplicationController
+    def show_user_details
+        @user = User.find_by(id: params[:id])
+        Rails.logger.info "UsersController::show_user_details"
+        Rails.logger.info "User:: #{@user.inspect}"
+        @current_user_todo_pending = Todo.where(user_id: @user[:id], completed: false, is_deleted: false)
+        @current_user_todo_completed = Todo.where(user_id: @user[:id], completed: true, is_deleted: false)
+
+        
+        
+    end
+
     def new 
         Rails.logger.info "UsersController::new"
         @new_user = User.new
@@ -18,7 +29,7 @@ class UsersController < ApplicationController
         @new_user = User.new(username: user[:username], email: user[:email], password: user[:password])
         if @new_user.save
             flash[:notice] = "Welcome #{@new_user[:username]}, you are signed up now!"
-            redirect_to "/todos"
+            redirect_to "/users/#{@new_user[:id]}"
         else
             Rails.logger.info "Inside else #{@new_user.inspect}"
             flash[:alert] = "Please enter valid details"

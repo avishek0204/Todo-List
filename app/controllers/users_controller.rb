@@ -4,6 +4,13 @@ class UsersController < ApplicationController
         @new_user = User.new
     end
 
+    def edit_user
+        Rails.logger.info "UsersController::edit"
+        Rails.logger.info "Params: #{params}"
+        @existing_user = User.find_by(id: params[:id])
+
+    end
+
     def create_user
         Rails.logger.info "UsersController::create_user"
         Rails.logger.info "params:: #{params}"
@@ -16,6 +23,19 @@ class UsersController < ApplicationController
             Rails.logger.info "Inside else #{@new_user.inspect}"
             flash[:alert] = "Please enter valid details"
             render 'new'
+        end
+    end
+
+    def update_user_details
+        Rails.logger.info "UsersController::update_user_details"
+        Rails.logger.info "params:: #{params}"
+        @existing_user = User.find_by(id: params[:id])
+        if @existing_user.update(username: params[:user][:username], email: params[:user][:email], password: params[:user][:password])
+            flash[:notice] = "Details updated!!"
+            redirect_to "/todos"
+        else  
+            flash[:alert] = "Something went wrong!!"
+            render :edit_user
         end
     end
 end

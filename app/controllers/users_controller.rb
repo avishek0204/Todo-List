@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+    def index
+    end
+    
     def show_user_details
         @user = User.find_by(id: params[:id])
         Rails.logger.info "UsersController::show_user_details"

@@ -1,2 +1,11 @@
 module ApplicationHelper
+    def current_user
+        Rails.logger.info "ApplicationHelper::current_user"
+        @current_user ||= User.find_by(id: session[:user_id])
+    end
+
+    def logged_in?
+        Rails.logger.info "ApplicationHelper::logged_in"
+        !!current_user
+    end
 end

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  root "todos#index"
-  get '/todos', to: redirect('/')
+  root "users#index"
+  
 
   # todos routes 
+  get '/todos', action: :index, controller: 'todos'
   get 'todos/new', action: :new, controller: 'todos'
   post '/todos/new', action: :create_todo, controller: 'todos'
   get '/todos/:id', action: :show, controller: 'todos'

@@ -4,9 +4,12 @@
     </div>
     <ul class="nav_link_list">
         <li> <%= link_to "Home", root_path , class: "nav_link" %> </li>
-        <li> <%= link_to "Users", users_path , class: "nav_link"%> </li>
-        <li> <%= link_to "Create new todo", todos_new_path , class: "nav_link"%> </li>
-        <li> <%= link_to "Login", "/login" , class: "nav_link" %> </li>
-        <li> <%= link_to "Logout", "/logout" , class: "nav_link", method: :delete%> </li>
+        <% if logged_in? %>
+            <li> <%= link_to "Users", users_path , class: "nav_link"%> </li>
+            <li> <%= link_to "Create new todo", todos_new_path , class: "nav_link"%> </li>
+            <li> <%= link_to "Logout", "/logout" , class: "nav_link", method: :delete%> </li>
+        <% else %>
+            <li> <%= link_to "Login", "/login" , class: "nav_link" %> </li>
+        <% end %>
     </ul>
 </header>

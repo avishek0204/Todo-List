@@ -12,7 +12,7 @@
 <div class="form-container">
     <div class="new_todo_form">
         <h1 class="todo_heading"> Update todo </h1>
-        <%= form_with model: @existing_todo, url: "/todos/#{@existing_todo[:id]}", method: :patch, local: true do |f| %>
+        <%= form_with model: @existing_todo, url: "/todos/#{@existing_todo[:id]}/edit", method: :patch, local: true do |f| %>
             <p class="title_input">
                 <span class="title_label"> <%= f.label :title %> </span>
                 <span class="title_box"> <%= f.text_field :title %> </span>

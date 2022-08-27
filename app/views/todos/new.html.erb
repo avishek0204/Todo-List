@@ -13,7 +13,7 @@
 <div class="form-container">
     <div class="new_todo_form">
         <h1 class="todo_heading"> Add a todo </h1>
-        <%= form_with model: @new_todo, url: "/", method: :post, local: true do |f| %>
+        <%= form_with model: @new_todo, url: "/todos/new", method: :post, local: true do |f| %>
             <p class="title_input">
                 <span class="title_label"> <%= f.label :title %> </span>
                 <span class="title_box"> <%= f.text_field :title %> </span>

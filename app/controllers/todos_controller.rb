@@ -21,7 +21,7 @@ class TodosController < ApplicationController
     def create_todo
         Rails.logger.info "TodosController::create_todo"
         @new_todo = Todo.new(title: params[:todo][:title], description: params[:todo][:description])
-        @new_todo.user = User.find_by(id: session[:user_id])
+        @new_todo.user = current_user
         if @new_todo.save
             flash[:notice] = "Todo created succesfully!!"
             redirect_to "/todos/#{@new_todo.id}"

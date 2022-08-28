@@ -30,6 +30,7 @@ class UsersController < ApplicationController
         user = params[:user]
         @new_user = User.new(username: user[:username], email: user[:email], password: user[:password])
         if @new_user.save
+            session[:user_id] = @new_user[:id]
             flash[:notice] = "Welcome #{@new_user[:username]}, you are signed up now!"
             redirect_to "/users/#{@new_user[:id]}"
         else

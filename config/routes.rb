@@ -31,6 +31,5 @@ Rails.application.routes.draw do
   
   get ':not_found', action: :invalid_url, controller: 'todos'
 
-  resources :userfk
 
 end

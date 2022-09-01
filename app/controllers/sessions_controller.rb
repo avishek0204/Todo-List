@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
         if user.present? && user.authenticate(params[:sessions][:password])
             session[:user_id] = user[:id]
             flash[:sucess] = "Logged in sucessfully"
-            redirect_to "/users/#{user[:id]}"
+            redirect_to "/"
         else 
             Rails.logger.info "Inside else"
             flash.now[:alert] = "Invalid email and password combination"

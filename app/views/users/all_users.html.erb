@@ -1,32 +1,36 @@
 <% provide(:title, "List of all users")%>
 
-<% if @all_users.first != nil %>
+<% if logged_in? %>
+  <% if @all_users.first != nil %>
 
-  <table class="table todos_table users_table">
-    <h1 class="table-heading"> List of all Users: <%= @all_users.length %></h1>
-    <thead>
-      <tr>
-        <th scope="col">Serial</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">No of todos </th>
-      </tr>
-    </thead>
-    <tbody>
-      
-      <% @all_users.each do |user|%>
-          <%
-              no_of_todos = Todo.where(user_id: user[:id], is_deleted: false).length
-          %>
-          <tr>
-              <th scope="row"><%= user.id %></th>
-              <td scope="row"><%= link_to "#{user[:username]}", "/users/#{user[:id]}" , class: "nav_link show-btn"%> </td>
-              <td class="row"><%= user[:email] %></td>
-              <td scope="row"><%= no_of_todos %></td>
-              
-          </tr>
-      <% end %>
-      
-    </tbody>
-  </table>
+    <table class="table todos_table users_table">
+      <h1 class="table-heading"> List of all Users: <%= @all_users.length %></h1>
+      <thead>
+        <tr>
+          <th scope="col">Serial</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">No of todos </th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <% @all_users.each do |user|%>
+            <%
+                no_of_todos = Todo.where(user_id: user[:id], is_deleted: false).length
+            %>
+            <tr>
+                <th scope="row"><%= user.id %></th>
+                <td scope="row"><%= link_to "#{user[:username]}", "/users/#{user[:id]}" , class: "nav_link show-btn"%> </td>
+                <td class="row"><%= user[:email] %></td>
+                <td scope="row"><%= no_of_todos %></td>
+                
+            </tr>
+        <% end %>
+        
+      </tbody>
+    </table>
+  <% end %>
+<% else %>
+  <p>Your are not logged in</p>
 <% end %>

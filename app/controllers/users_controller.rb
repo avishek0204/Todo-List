@@ -1,9 +1,17 @@
 class UsersController < ApplicationController
     def index
+        Rails.logger.info "Session: #{session[:user_id]}"
+        if session[:user_id].present?
+            @user = User.find_by(id: session[:user_id]) 
+            @logged_in_user_id = session[:user_id]
+            @current_user_todo_pending = Todo.where(user_id: @user[:id], completed: false, is_deleted: false)
+            @current_user_todo_completed = Todo.where(user_id: @user[:id], completed: true, is_deleted: false)
+        end
     end
 
     def show_user_details
-        @user = User.find_by(id: params[:id])        
+        @user = User.find_by(id: params[:id])  
+        Rails.logger.info "User:: #{@user.inspect}"      
         Rails.logger.info "UsersController::show_user_details"
         @logged_in_user_id = session[:user_id]
         @current_user_todo_pending = Todo.where(user_id: @user[:id], completed: false, is_deleted: false)

@@ -14,8 +14,12 @@ class UsersController < ApplicationController
         Rails.logger.info "User:: #{@user.inspect}"      
         Rails.logger.info "UsersController::show_user_details"
         @logged_in_user_id = session[:user_id]
-        @current_user_todo_pending = Todo.where(user_id: @user[:id], completed: false, is_deleted: false)
-        @current_user_todo_completed = Todo.where(user_id: @user[:id], completed: true, is_deleted: false)
+        if @user.present?
+            @current_user_todo_pending = Todo.where(user_id: @user[:id], completed: false, is_deleted: false)
+            @current_user_todo_completed = Todo.where(user_id: @user[:id], completed: true, is_deleted: false)
+        else
+            render '/404'
+        end
     end
 
     def all_users

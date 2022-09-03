@@ -67,8 +67,4 @@ class TodosController < ApplicationController
         redirect_to "/users/#{session[:user_id]}"
     end
 
-    def invalid_url
-        render '/404'
-    end
-
 end

@@ -13,12 +13,13 @@
     }
     .input_field{
         input{
-            height: 40px;
             padding: 0 10px;
-            width: 221px;
         }
         .label{
             margin-right:61px;
+        }
+        .label_admin{
+            margin-right: 23px !important;
         }
         .email{
             margin-left: 34px;
@@ -26,6 +27,7 @@
         .password{
             padding-left: 4px;
         }
+
     }   
     .input_desc{
         textarea{

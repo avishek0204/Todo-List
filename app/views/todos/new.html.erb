@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'form' %>
 <% provide(:title, "Create new todo")%>
 <% if logged_in? %>
     <%
@@ -12,16 +13,16 @@
 
 
     <div class="form-container">
-        <div class="new_todo_form">
-            <h1 class="todo_heading"> Add a todo </h1>
+        <div class="new_form">
+            <h1 class="form_heading"> Add a todo </h1>
             <%= form_with model: @new_todo, url: "/todos/new", method: :post, local: true do |f| %>
-                <p class="title_input">
-                    <span class="title_label"> <%= f.label :title %> </span>
-                    <span class="title_box"> <%= f.text_field :title %> </span>
+                <p class="input_field">
+                    <span class="label"> <%= f.label :title %> </span>
+                    <span class="title"> <%= f.text_field :title %> </span>
                 </p>
 
-                <p class="desc_input">
-                    <span class="desc_label"> <%= f.label :description %> </span>
+                <p class="input_field input_desc">
+                    <span class="label label_desc"> <%= f.label :description %> </span>
                     <span class="desc_box"> <%= f.text_area :description %> </span>
                 </p>
 

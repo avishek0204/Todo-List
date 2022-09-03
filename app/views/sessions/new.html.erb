@@ -1,18 +1,19 @@
+<%= stylesheet_link_tag 'form' %>
 <% provide(:title, "login")%>
 
 
 <div class="form-container">
-    <div class="new_todo_form">
+    <div class="new_form">
         <%= form_with scope: :sessions, url: "/login" do |f| %>
 
-            <p class="title_input">
-                <span class="title_label"> <%= f.label :email %> </span>
-                <span class="title_box"> <%= f.text_field :email %> </span>
+            <p class="input_field">
+                <span class="label"> <%= f.label :email %> </span>
+                <span class="title"> <%= f.text_field :email %> </span>
             </p>
 
-            <p class="title_input">
-                <span class="title_label"> <%= f.label :password %> </span>
-                <span class="title_box"> <%= f.password_field :password %> </span>
+            <p class="input_field">
+                <span class="label"> <%= f.label :password %> </span>
+                <span class="title"> <%= f.password_field :password %> </span>
             </p>
 
             <p>

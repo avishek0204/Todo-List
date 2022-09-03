@@ -1,26 +1,28 @@
+<%= stylesheet_link_tag 'form' %>
 <% provide(:title, "Sign up")%>
 
-
-
-
-
 <div class="form-container">
-    <div class="new_todo_form">
-        <h1 class="todo_heading"> Enter you details </h1>
+    <div class="new_form">
+        <h1 class="form_heading"> Enter you details </h1>
         <%= form_with model: @new_user, url: "/signup", method: :post, local: true do |f| %>
-            <p class="title_input">
-                <span class="title_label"> <%= f.label :username %> </span>
-                <span class="title_box"> <%= f.text_field :username %> </span>
+            <p class="input_field">
+                <span class="label"> <%= f.label :username %> </span>
+                <span class="username"> <%= f.text_field :username %> </span>
             </p>
 
-            <p class="title_input">
-                <span class="title_label"> <%= f.label :email %> </span>
-                <span class="title_box"> <%= f.text_field :email %> </span>
+            <p class="input_field">
+                <span class="label"> <%= f.label :email %> </span>
+                <span class="email"> <%= f.text_field :email %> </span>
             </p>
 
-            <p class="title_input">
-                <span class="title_label"> <%= f.label :password %> </span>
-                <span class="title_box"> <%= f.password_field :password %> </span>
+            <p class="input_field">
+                <span class="label"> <%= f.label :password %> </span>
+                <span class="password"> <%= f.password_field :password %> </span>
+            </p>
+
+            <p>
+                <span class="label"> <%= f.label :is_admin, "Are you admin?"%> </span>
+                <span class="checkbox"> <%= f.check_box :is_admin %> </span>
             </p>
 
             <p>

@@ -1,0 +1,47 @@
+.form-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    .form_heading{
+        text-align: center;
+    }
+    .new_form{
+        box-shadow: 0 2px 4px 2px rgba(0, 0, 0, .1);
+        border-radius: 8px;
+        background-color: #fff;
+        padding: 20px 30px 10px 30px;
+    }
+    .input_field{
+        input{
+            height: 40px;
+            padding: 0 10px;
+            width: 221px;
+        }
+        .label{
+            margin-right:61px;
+        }
+        .email{
+            margin-left: 34px;
+        }
+        .password{
+            padding-left: 4px;
+        }
+    }   
+    .input_desc{
+        textarea{
+            resize: none;
+            height: 40px;
+            width:221px;
+            padding-left: 10px;
+            padding-top: 6px;
+        }
+        .label_desc{
+            position: relative;
+            top: -14px;
+            margin-right: 10px;
+        }
+    }   
+    .submit_btn{
+        text-align: center;
+    }
+}

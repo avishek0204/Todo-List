@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'form' %>
 <% provide(:title, "Update")%>
 <%
     Rails.logger.info "Inside edit_todo.html.erb"
@@ -10,16 +11,16 @@
     <% end %>
 <ul>
 <div class="form-container">
-    <div class="new_todo_form">
-        <h1 class="todo_heading"> Update todo </h1>
+    <div class="new_form">
+        <h1 class="form_heading"> Update todo </h1>
         <%= form_with model: @existing_todo, url: "/todos/#{@existing_todo[:id]}/edit", method: :patch, local: true do |f| %>
-            <p class="title_input">
-                <span class="title_label"> <%= f.label :title %> </span>
-                <span class="title_box"> <%= f.text_field :title %> </span>
+            <p class="input_field">
+                <span class="label"> <%= f.label :title %> </span>
+                <span class="title"> <%= f.text_field :title %> </span>
             </p>
 
-            <p class="desc_input">
-                <span class="desc_label"> <%= f.label :description %> </span>
+            <p class="input_field input_desc">
+                <span class="label"> <%= f.label :description %> </span>
                 <span class="desc_box"> <%= f.text_area :description %> </span>
             </p>
 

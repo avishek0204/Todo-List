@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
 
   
-  get ':not_found', action: :invalid_url, controller: 'todos'
+  get ':not_found', action: :invalid_url, controller: 'application'
 
 
 end

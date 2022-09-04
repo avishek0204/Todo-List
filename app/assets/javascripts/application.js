@@ -19,6 +19,9 @@
 //= require popper
 // = require bootstrap-sprockets
 
+
+
+
 function togglePassword() {
     var x = document.getElementById("user_password");
     if (x.type === "password") {
@@ -27,3 +30,8 @@ function togglePassword() {
       x.type = "password";
     }
   }
+
+function toggleValue(){
+    let isAdminVal = document.getElementById("get_admin_val");
+    isAdminVal.value = 1 - isAdminVal.value;
+}

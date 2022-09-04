@@ -5,9 +5,12 @@ class SessionsController < ApplicationController
 
     def create
         Rails.logger.info "SessionController::create"
+        Rails.logger.info "Params:: #{params}"
         user = User.find_by(email: params[:sessions][:email])
+        Rails.logger.info "User details:: #{user.inspect}"
         if user.present? && user.authenticate(params[:sessions][:password])
             session[:user_id] = user[:id]
+            session[:admin] = user[:is_admin]
             flash[:sucess] = "Logged in sucessfully"
             redirect_to "/"
         else 

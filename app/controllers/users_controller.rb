@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     def create_user
         Rails.logger.info "UsersController::create_user"
         user = params[:user]
-        @new_user = User.new(username: user[:username], email: user[:email], password: user[:password])
+        @new_user = User.new(username: user[:username], email: user[:email], password: user[:password], is_admin: user[:is_admin])
         if @new_user.save
             session[:user_id] = @new_user[:id]
             flash[:notice] = "Welcome #{@new_user[:username]}, you are signed up now!"

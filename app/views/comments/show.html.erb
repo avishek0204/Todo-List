@@ -1,0 +1,47 @@
+<%= stylesheet_link_tag 'form' %>
+
+<% provide(:title, "#{@todo.id}")%>
+<%
+    author = User.find_by(id: @todo[:user_id])
+    comments = Todo.find_by(id: @todo[:id]).comments
+%>
+<div class="todo-container">
+    <div class="todo-item">
+
+        <div class="todo-title">
+            <h1> <%= @todo.title %> </h1>
+        </div>
+        <div class="todo-desc">
+            <p> <%= @todo.description %> </p>
+        </div>
+        <div class="todo_creator">
+            <p><b>Created by: </b> <%= author.username %> </p>
+        </div>
+        <% if comments.length >= 1%>
+            <div class="comments">
+                <h3> Comments </h3>
+                <% comments.each do |comment|%>
+                    <li><%= comment[:comment] %> </li>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+   
+</div>
+
+
+
+<div class="form-container">
+    <div class="new_form">
+        <%= form_with model: @comment, url: "/todos/#{@todo[:id]}/comment", method: :post, local: true do |f| %>
+
+            <p class="input_field input_desc">
+                <span class="desc_box"> <%= f.text_area :comment %> </span>
+            </p>
+
+            <p>
+                <div class="submit_btn"> <%= f.submit "Comment", class: "btn btn-primary"%> </div>
+            </p>
+        <% end %>
+    </div>
+</div>

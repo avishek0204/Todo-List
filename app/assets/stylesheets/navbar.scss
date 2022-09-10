@@ -1,0 +1,36 @@
+
+.todo_nav{
+    color:white;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px 2px rgba(0, 0, 0, .1);
+    #todo_logo{
+        font-size: 36px;
+        font-weight: 600;
+        font-family: cursive;
+        width: 20%;
+        padding-left: 50px;
+        text-align: justify;
+        .nav_link{
+            text-decoration: none;
+            color: currentColor;
+        }
+    }
+    .nav_link_list{
+        width:60%;
+        display: flex;
+        justify-content: space-around;
+        padding-top: 12px;
+        font-size: 20px;
+        font-weight: 600;
+        font-family: revert;
+        li{
+            list-style: none;
+        }
+        .nav_link{
+            text-decoration: none;
+            color: currentColor;
+        }
+    }
+}

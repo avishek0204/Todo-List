@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   patch '/todos/:id/edit', action: :update_todo, controller: 'todos'
   delete '/todos/:id', action: :destroy, controller: 'todos'
   patch '/todos/:id/mark', action: :mark_completed, controller: 'todos'
+  patch '/todos/:id/like', action: :handle_likes_count, controller: 'todos'
 
 
   # user routes 

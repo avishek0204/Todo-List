@@ -10,7 +10,9 @@
           <th scope="col">Title</th>
           <th scope="col">Description</th>
           <th scope="col" class="pending-action"> Action </th>
-          <th scope="col"> Author </th>
+          <% if false %>
+            <th scope="col"> Author </th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
@@ -27,10 +29,13 @@
                     <%= link_to "Delete", "/todos/#{todo[:id]}", method: :delete, class: "delete-btn"%> |
                     <%= link_to "Update", "/todos/#{todo[:id]}/edit", class: "update-btn" %> |
                     <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %> |
-                    <%= link_to "Mark Completed", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
+                    <%= link_to "Mark Completed", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> |
+                    <%= todo.likes %> <%= link_to "Likes", "/todos/#{todo[:id]}/like", class: "show-btn", method: :patch %>
                     
                 </td>
-                <td><%= author.username %> </td>
+                <% if false %>
+                  <td><%= author.username %> </td>
+                <% end %>
 
                 
             </tr>
@@ -49,7 +54,9 @@
           <th scope="col">Title</th>
           <th scope="col">Description</th>
           <th scope="col" class="completed-action"> Action </th>
-          <th scope="col"> Author </th>
+          <% if false %>
+            <th scope="col"> Author </th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
@@ -65,9 +72,12 @@
                 <td class="action-item">
                     <%= link_to "Delete", "/todos/#{todo[:id]}", method: :delete, class: "delete-btn" %> |
                     <%= link_to "Show", "/todos/#{todo[:id]}", class: "show-btn" %>  |
-                    <%= link_to "Mark Incompleted", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> 
+                    <%= link_to "Mark Incompleted", "/todos/#{todo[:id]}/mark", class: "show-btn", method: :patch %> |
+                    <%= todo.likes %> <%= link_to "Likes", "/todos/#{todo[:id]}/like", class: "show-btn", method: :patch %> 
                 </td>
-                <td><%= author.username %> </td> 
+                <% if false %>
+                  <td><%= author.username %> </td> 
+                <% end %>
                 
             </tr>
         <% end %>

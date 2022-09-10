@@ -67,4 +67,12 @@ class TodosController < ApplicationController
         redirect_back fallback_location: root_path
     end
 
+    def handle_likes_count
+        Rails.logger.info "TodosController::handle_likes_count"
+        @todo = Todo.find_by(id: params[:id])
+        updated_likes = @todo[:likes] + 1
+        @todo.update(likes: updated_likes )
+        redirect_back fallback_location: root_path
+    end
+
 end

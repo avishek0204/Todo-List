@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_10_074553) do
+ActiveRecord::Schema.define(version: 2022_09_15_173057) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "todo_id"
+    t.string "commented_by", default: "admin"
   end
 
   create_table "todos", force: :cascade do |t|
@@ -27,7 +28,6 @@ ActiveRecord::Schema.define(version: 2022_09_10_074553) do
     t.boolean "completed", default: false
     t.boolean "is_deleted", default: false
     t.integer "user_id"
-    t.integer "likes", default: 0
   end
 
   create_table "users", force: :cascade do |t|

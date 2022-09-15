@@ -22,6 +22,7 @@
             <div class="comments">
                 <h3> Comments </h3>
                 <% comments.each do |comment|%>
+                    <p class="commented-by"> <b> <%= comment[:commented_by]%></b> </p>
                     <div><%= comment[:comment] %> </div>
                     <hr>
                 <% end %>
@@ -32,7 +33,7 @@
 </div>
 
 
-
+<% if logged_in? %>
 <div class="form-container">
     <div class="new_form">
         <%= form_with model: @comment, url: "/todos/#{@todo[:id]}/comment", method: :post, local: true do |f| %>
@@ -47,3 +48,4 @@
         <% end %>
     </div>
 </div>
+<% end %>

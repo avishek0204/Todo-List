@@ -11,8 +11,9 @@ class CommentsController < ApplicationController
     def add_comment
         Rails.logger.info "CommentsController::add_comment"
         Rails.logger.info "Params:: #{params}"
-
-        @new_comment = Comment.new(comment: params[:comment][:comment],todo_id: params[:id])
+        Rails.logger.info "Session: #{session[:user_id]}"
+        commented_by = User.find_by(id: session[:user_id])
+        @new_comment = Comment.new(comment: params[:comment][:comment],todo_id: params[:id], commented_by: commented_by[:username])
         if @new_comment.save
             redirect_to "/todos/#{params[:id]}"
         else 

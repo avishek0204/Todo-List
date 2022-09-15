@@ -1,6 +1,6 @@
 <% provide(:title, "List of all users")%>
 
-<% if logged_in? && session[:admin] %>
+<% if logged_in?%>
   <% if @all_users.first != nil %>
 
     <table class="table todos_table users_table">

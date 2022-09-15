@@ -23,7 +23,6 @@ class TodosController < ApplicationController
         @new_todo = Todo.new(title: params[:todo][:title], description: params[:todo][:description])
         @new_todo.user = current_user
         if @new_todo.save
-            flash[:notice] = "Todo created succesfully!!"
             redirect_to "/todos/#{@new_todo.id}"
         else 
             render :new
@@ -43,7 +42,6 @@ class TodosController < ApplicationController
         Rails.logger.info "TodosController::update_todo"
         @existing_todo = Todo.find(params[:id])
         if @existing_todo.update(title: params[:todo][:title], description: params[:todo][:description])
-            flash[:notice] = "Todo updated sucessfully!!"
             redirect_to "/todos/#{params[:id]}"
         else  
             render :edit_todo
@@ -54,7 +52,6 @@ class TodosController < ApplicationController
         Rails.logger.info "TodosController::destroy"
         @todo = Todo.find(params[:id]) 
         @todo.update(is_deleted: true)
-        flash[:deleted] = "Todo deleted sucessfully!!" 
         redirect_to "/"
     end
 

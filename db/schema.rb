@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_15_173057) do
+ActiveRecord::Schema.define(version: 2022_09_15_201959) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2022_09_15_173057) do
     t.datetime "updated_at", null: false
     t.integer "todo_id"
     t.string "commented_by", default: "admin"
+    t.integer "user_id"
   end
 
   create_table "todos", force: :cascade do |t|

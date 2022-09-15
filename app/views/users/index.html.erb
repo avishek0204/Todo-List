@@ -11,7 +11,6 @@
       </div>
   <% else %>
     <div class="user-details">
-        <h1 class="text-center mt-4"> Your details </h1>
         <p class="text-center"><b> Username: </b><%= @user[:username] %> </p>
         <p class="text-center"><b> Email: </b><%= @user[:email] %> </p>
         <% if @logged_in_user_id == @user[:id] %>

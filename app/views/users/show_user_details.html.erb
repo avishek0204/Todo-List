@@ -1,8 +1,7 @@
 <% provide(:title, "#{@user[:username]} profile")%>
 <% if logged_in? %>
   <div class="user-details">
-      <h1 class="text-center mt-4"> Your details </h1>
-      <p class="text-center"><b> Username: </b><%= @user[:username] %> </p>
+      <p class="text-center pt-20"><b> Username: </b><%= @user[:username] %> </p>
       <p class="text-center"><b> Email: </b><%= @user[:email] %> </p>
       <% if @logged_in_user_id == @user[:id] %>
           <div class="text-center"> 

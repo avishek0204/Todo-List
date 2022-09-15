@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
         if user.present? && user.authenticate(params[:sessions][:password])
             session[:user_id] = user[:id]
             session[:admin] = user[:is_admin]
-            flash[:sucess] = "Logged in sucessfully"
             redirect_to "/"
         else 
             Rails.logger.info "Inside else"
@@ -24,7 +23,6 @@ class SessionsController < ApplicationController
     def destroy
         Rails.logger.info "SessionController::destroy"
         session[:user_id] = nil
-        flash[:notice] = "Logged out"
         redirect_to '/'
     end
 end

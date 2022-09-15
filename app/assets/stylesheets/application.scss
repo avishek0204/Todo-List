@@ -17,7 +17,9 @@ html, body{
 .delete-btn, .update-btn, .show-btn:hover{
     cursor: pointer;
 }
-
+.pt-20{
+    padding-top: 20px;
+}
 // table css
 .table-heading{
     margin-top:30px;
@@ -82,3 +84,4 @@ html, body{
 .alert-danger{
     text-align: center;
 }
+

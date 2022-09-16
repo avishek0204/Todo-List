@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'show_todo'%>
 <%= stylesheet_link_tag 'form' %>
 
-<% provide(:title, "#{@todo.id}")%>
+<% provide(:title, "#{@todo[:id]}")%>
 <%
     author = User.find_by(id: @todo[:user_id])
     comments = Todo.find_by(id: @todo[:id]).comments

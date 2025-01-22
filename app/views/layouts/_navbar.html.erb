@@ -1,14 +1,14 @@
 <%= stylesheet_link_tag 'navbar' %>
 <header class="todo_nav">
     <div class="todos_logo" id="todo_logo">
-        <%= link_to "Todo List", root_path , class: "nav_link" %>
+        <%= link_to "testing", root_path , class: "nav_link" %>
     </div>
-    <ul class="nav_link_list">
-        <% if logged_in? %>
+     <% if logged_in? %>
+        <ul class="nav_link_list">
             <li> <%= link_to "#{@current_user[:username]}", "/users/#{@current_user[:id]}" , class: "nav_link" %> </li>
             <li> <%= link_to "Users", users_path , class: "nav_link" %> </li>
             <li> <%= link_to "Create new todo", todos_new_path , class: "nav_link" %> </li>
             <li> <%= link_to "Logout", "/logout" , class: "nav_link", method: :delete %> </li>
-        <% end %>
-    </ul>
+        </ul>
+    <% end %>
 </header>

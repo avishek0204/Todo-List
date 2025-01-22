@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/todo-service', as: 'rails_admin'
   root "users#index"
   
 
